@@ -11,6 +11,8 @@ export default defineConfig({
     },
     // For R3F models/assets, you might need to ensure assets are handled:
     // e.g., assetsDir: 'assets', etc.
+    optimizeDeps: { 
+        esbuildOptions: { force:true, loader:{ '.js': 'jsx' } } },
     test: {
         globals: true,
         environment: "jsdom",
