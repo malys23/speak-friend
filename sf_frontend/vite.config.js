@@ -11,4 +11,9 @@ export default defineConfig({
     },
     // For R3F models/assets, you might need to ensure assets are handled:
     // e.g., assetsDir: 'assets', etc.
+    test: {
+        globals: true,
+        environment: "jsdom",
+        setupFiles: "./src/setupTests.js",
+    },
 });
