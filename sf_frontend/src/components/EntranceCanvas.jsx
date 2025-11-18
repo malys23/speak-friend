@@ -8,7 +8,7 @@ import { EntranceDungeon } from "../assets/EntranceDungeon";
 const EntranceCanvas = () => {
     const ref = useRef();
     return (
-        <Canvas>
+        <Canvas camera={{ fov: 60}}>
             <directionalLight position={[3,2,5]} intensity={10}/>
             <Physics>
                 <Debug/>
