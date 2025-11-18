@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath';
 
 export function EntranceDungeon(props) {
-  const { nodes, materials } = useGLTF('models/DungeonEntranceSolid.glb')
+  const { nodes, materials } = useGLTF('assets/DungeonEntranceSolid.glb')
 
   return (
     <group {...props} dispose={null}>
@@ -332,4 +332,4 @@ export function EntranceDungeon(props) {
   )
 }
 
-useGLTF.preload('models/DungeonEntranceSolid.glb')
+useGLTF.preload('assets/DungeonEntranceSolid.glb')
