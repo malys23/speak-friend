@@ -7,8 +7,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import EntranceCanvas from './components/EntranceCanvas';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const ref = useRef();
 
   return (
     <EntranceCanvas/>
