@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
 export function EntranceBook(props) {
-  const { nodes, materials } = useGLTF('assets/OpenBook.glb')
+  const { nodes, materials } = useGLTF('models/OpenBook.glb')
   const ref = useRef()
 
   return (
@@ -21,4 +21,4 @@ export function EntranceBook(props) {
   )
 }
 
-useGLTF.preload('assets/OpenBook.glb')
+useGLTF.preload('models/OpenBook.glb')
