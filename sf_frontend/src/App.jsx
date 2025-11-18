@@ -5,21 +5,13 @@ import { Physics, Debug } from '@react-three/rapier';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import EntracnceCanvas from './components/EntranceCanvas';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Canvas>
-        <Physics>
-          <Debug>
-
-          </Debug>
-        </Physics>
-        <PointerLockControls/>
-      </Canvas>
-    </>
+    <EntracnceCanvas/>
   )
 }
 
