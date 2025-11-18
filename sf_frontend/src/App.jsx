@@ -11,7 +11,16 @@ const App = () => {
   const ref = useRef();
 
   return (
-    <EntranceCanvas/>
+    <>
+      <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>
+        <directionalLight position={[3,2,5]} intensity={10}/>
+        <mesh>
+          <boxGeometry args={[20, 0.1, 20]} />
+          <meshStandardMaterial color="#5d9955" />
+        </mesh>
+        <OrbitControls/>
+      </Canvas>
+    </>
   );
 }
 
