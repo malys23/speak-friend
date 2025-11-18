@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, PointerLockControls } from "@react-three/drei";
 import { Physics, Debug } from "@react-three/rapier";
-import { EntranceDungeon } from "../assets/EntranceDungeon";
+import { EntranceDungeon } from "../assets/EntranceDungeon.jsx";
 
 
 const EntranceCanvas = () => {
@@ -10,7 +10,10 @@ const EntranceCanvas = () => {
     return (
         <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>
             <directionalLight position={[3,2,5]} intensity={10}/>
-            <EntranceDungeon/>
+            <mesh>
+                <boxGeometry args={[20, 0.1, 20]} />
+                <meshStandardMaterial color="#5d9955" />
+            </mesh>
         </Canvas>
     );
 }
