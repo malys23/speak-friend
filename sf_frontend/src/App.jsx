@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <EntranceCanvas/>
-  )
+  );
 }
 
 export default App;
