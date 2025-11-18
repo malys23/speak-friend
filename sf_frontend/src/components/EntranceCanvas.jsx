@@ -8,14 +8,13 @@ import { EntranceDungeon } from "../assets/EntranceDungeon";
 const EntranceCanvas = () => {
     const ref = useRef();
     return (
-        <>
-            <Canvas>
-                <Physics>
-                    <Debug/>
-                    <EntranceDungeon/>
-                </Physics>                                   
-            </Canvas>
-        </>
+        <Canvas>
+            <directionalLight position={[3,2,5]} intensity={10}/>
+            <Physics>
+                <Debug/>
+                <EntranceDungeon/>
+            </Physics>                                   
+        </Canvas>
     );
 }
-export default EntracnceCanvas;
+export default EntranceCanvas;
