@@ -10,10 +10,7 @@ const EntranceCanvas = () => {
     return (
         <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>
             <directionalLight position={[3,2,5]} intensity={10}/>
-            <Physics>
-                <Debug/>
-                <EntranceDungeon/>
-            </Physics>                                   
+            <EntranceDungeon/>
         </Canvas>
     );
 }
