@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, PointerLockControls, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import { EntranceDungeon } from "../assets/EntranceDungeon.jsx";
+import { EntranceDungeon } from "../components/EntranceDungeon.jsx";
+import FPScontrols from "../components/FPScontrols.jsx";
 
 
 const EntranceCanvas = () => {
@@ -12,6 +13,16 @@ const EntranceCanvas = () => {
             <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>
                 <Physics>
                     <EntranceDungeon/>
+                    <KeyboardControls
+                        map={[
+                            { name: "forwardKeyPressed", keys: ["ArrowUp", "KeyW"] },
+                            { name: "rightKeyPressed", keys: ["ArrowRight", "KeyD"] },
+                            { name: "backwardKeyPressed", keys: ["ArrowDown", "KeyS"] },
+                            { name: "leftKeyPressed", keys: ["ArrowLeft", "KeyA"] }
+                        ]}
+                    >
+                        <FPScontrols/>
+                    </KeyboardControls>
                 </Physics>
                 <OrbitControls/>
                 
