@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, PointerLockControls, OrbitControls } from "@react-three/drei";
-import { Physics, Debug } from "@react-three/rapier";
+import { Physics } from "@react-three/rapier";
 import { EntranceDungeon } from "../assets/EntranceDungeon.jsx";
 
 
