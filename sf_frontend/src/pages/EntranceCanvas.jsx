@@ -24,8 +24,7 @@ const EntranceCanvas = () => {
                         <FPScontrols/>
                     </KeyboardControls>
                 </Physics>
-                <OrbitControls/>
-                
+                                
                 <ambientLight intensity={0.3} />
                 <directionalLight intensity={1} position={[2, 7, 7]} />
                 <directionalLight intensity={0.5} position={[-2, -7, -3]} />
