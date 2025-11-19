@@ -14,7 +14,7 @@ const EntranceCanvas = () => {
         <>
             <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>
                 <Physics>
-                    <World/>
+                    <World />
                     <KeyboardControls
                         map={[
                             { name: "forwardKeyPressed", keys: ["ArrowUp", "KeyW"] },
@@ -30,6 +30,8 @@ const EntranceCanvas = () => {
                 <ambientLight intensity={0.3} />
                 <directionalLight intensity={1} position={[2, 7, 7]} />
                 <directionalLight intensity={0.5} position={[-2, -7, -3]} />
+
+                <PointerLockControls/>
             </Canvas>
         </>
     );
