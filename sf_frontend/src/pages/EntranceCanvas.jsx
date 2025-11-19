@@ -15,7 +15,7 @@ const EntranceCanvas = () => {
             <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>
                 <Physics>
                     <World />
-                    <EntranceCanvas/>
+                    <EntranceDungeon/>
                     <KeyboardControls
                         map={[
                             { name: "forwardKeyPressed", keys: ["ArrowUp", "KeyW"] },
