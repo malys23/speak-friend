@@ -8,7 +8,7 @@ export function EntranceDungeon(props) {
 
   return (
     <group {...props} dispose={null}>
-      <group position={[6, 1.25, -1]} rotation={[Math.PI / 2, 0, 1.553]}>
+      <group position={[6, 1.25, 0]} rotation={[Math.PI / 2, 0, 1.553]}>
         <mesh
           castShadow
           receiveShadow
