@@ -5,6 +5,8 @@ import { Physics } from "@react-three/rapier";
 import { EntranceDungeon } from "../components/EntranceDungeon.jsx";
 import FPScontrols from "../components/FPScontrols.jsx";
 
+import World from "../components/World.jsx";
+
 
 const EntranceCanvas = () => {
     const ref = useRef();
@@ -12,7 +14,7 @@ const EntranceCanvas = () => {
         <>
             <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>
                 <Physics>
-                    <EntranceDungeon/>
+                    <World/>
                     <KeyboardControls
                         map={[
                             { name: "forwardKeyPressed", keys: ["ArrowUp", "KeyW"] },
@@ -24,7 +26,7 @@ const EntranceCanvas = () => {
                         <FPScontrols/>
                     </KeyboardControls>
                 </Physics>
-                                
+
                 <ambientLight intensity={0.3} />
                 <directionalLight intensity={1} position={[2, 7, 7]} />
                 <directionalLight intensity={0.5} position={[-2, -7, -3]} />
