@@ -50,10 +50,10 @@ const FPScontrols = () => {
                 mass={1}
                 friction={0}
                 restitution={0}
-                position = {[0, 0.6, 0]}
+                position = {[-0.1, 1, -0.4]}
                 enabledRotations={[false, false, false]}
             >
-                <CapsuleCollider args={[0.3, 0.25]}/>
+                <CapsuleCollider args={[1.2, 0.25]}/>
             </RigidBody>
         </>
     );
