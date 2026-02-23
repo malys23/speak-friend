@@ -1,15 +1,13 @@
-import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, PointerLockControls, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import { EntranceDungeon } from "../components/EntranceDungeon.jsx";
-import FPScontrols from "../components/FPScontrols.jsx";
+import { EntranceDungeon } from "../../components/canvas/EntranceDungeon.jsx";
+import FPScontrols from "../../components/canvas/FPScontrols.jsx";
 
-import World from "../components/World.jsx";
+import World from "../../components/canvas/World.jsx";
 
 
 const EntranceCanvas = () => {
-    const ref = useRef();
     return (
         <>
             <Canvas camera={{ position: [0, 1, 5] }} flat shadows dpr={[1, 2]}>

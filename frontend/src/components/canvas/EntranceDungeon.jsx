@@ -1,7 +1,4 @@
-import { React, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber';
-import { easing } from 'maath';
 
 export function EntranceDungeon(props) {
   const { nodes, materials } = useGLTF('assets/DungeonEntranceSolid.glb')
