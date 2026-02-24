@@ -2,13 +2,23 @@ import { Canvas } from '@react-three/fiber';
 import { PointerLockControls, OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/rapier';
 import './App.css'
-import EntranceCanvas from './pages/EntranceCanvas.jsx';
+//import EntranceCanvas from './pages/EntranceCanvas.jsx';
+import { useEffect } from 'react';
+import api from './services/api';
 
 const App = () => {
-
-  return (
-    <EntranceCanvas/>
-  );
-}
+    useEffect(() => {
+      const testConnection = async () => {
+        try{
+          const response = await api.get('/api/test');
+          console.log(response.data);
+        } catch (err){
+          console.error('Connection failed:', err);
+        }
+      };
+      testConnection();   
+  }, []);
+  return <div>SpeakFriend</div>;
+};
 
 export default App;
