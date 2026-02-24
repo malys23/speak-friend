@@ -29,8 +29,8 @@ app.use(express.urlencoded({extended: true}));
 
 //Sockets.io events
 
-app.get('/', (req, res)=>{
-    res.send('Hello from Node.js!');
+app.get('/api/test', (req, res)=>{
+    res.json({message: 'Hello from the backend!'});
 });
 
 //Error Handler
