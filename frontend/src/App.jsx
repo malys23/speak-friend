@@ -6,7 +6,10 @@ import './App.css'
 import { useEffect } from 'react';
 import api from './services/api';
 
+import DummyMessenger from './components/Messenger/DummyMessenger';
+
 const App = () => {
+
     useEffect(() => {
       const testConnection = async () => {
         try{
@@ -18,7 +21,13 @@ const App = () => {
       };
       testConnection();   
   }, []);
-  return <div>SpeakFriend</div>;
+  
+  return (
+    <div>
+      <DummyMessenger />
+    </div>
+  );
+  
 };
 
 export default App;
