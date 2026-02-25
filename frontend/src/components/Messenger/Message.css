@@ -1,0 +1,41 @@
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    height: fit-content;
+    padding: 8px;
+    margin: 8px;
+    border-radius: 12px;
+    background-color: #2a2a4a;
+    color: #ffffff;
+    align-self: flex-start;
+    box-sizing: border-box;
+}
+
+/* Your own messages align to the right */
+.message.own {
+    align-self: flex-end;
+    margin-left: auto;
+    background-color: #4a4a8a;
+}
+
+.message .username {
+    font-size: 0.75rem;
+    color: #a0a0c0;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.message p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.message .timestamp {
+    font-size: 0.7rem;
+    color: #808080;
+    margin-top: 4px;
+    align-self: flex-end;
+}

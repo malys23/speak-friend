@@ -1,9 +1,20 @@
-export default function Message({message}){
+import './Message.css';
+
+export default function Message({message, currentUserId }){
+    const isOwn = (message.user_id === currentUserId);
+
     return (
-        <div className="message">
-            <span className='username'>{message.username}</span>
-            <p>{message}</p>
-            <span className='timestamp'>{message.created_at}</span>
+        <div className={`message ${isOwn ? 'own' : ''}`}
+            role='article'
+        >
+            {!isOwn && <span className='username'>{message.username}</span>}
+            <p>{message.content}</p>
+            <span className='timestamp'>
+                {new Date(message.created_at).toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })}
+            </span>
         </div>
     );
 }

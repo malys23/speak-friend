@@ -4,7 +4,6 @@ import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
 import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
 
 //Database
 import './config/db.js';

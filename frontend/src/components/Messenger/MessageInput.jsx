@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './MessageInput.css'
 
 export default function MessageInput({onSend}){
     const [ input, setInput ] = useState('');
@@ -15,7 +16,7 @@ export default function MessageInput({onSend}){
     }
 
     return (
-        <form className="message-input" onSubmit={handleSubmit}>
+        <form className="message-input-form" onSubmit={handleSubmit}>
             <input 
                 type='text' 
                 placeholder='Type a message...' 

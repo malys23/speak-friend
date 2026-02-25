@@ -1,0 +1,45 @@
+.message-input-form {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    column-gap: 8px;
+    padding: 8px;
+    height: 10%;
+    background-color: #16213e;
+    border-top: 1px solid #2a2a4a;
+    box-sizing: border-box;
+}
+
+.message-input-form input {
+    grid-column: 1;
+    padding: 8px;
+    border-radius: 24px;
+    border: 1px solid #2a2a4a;
+    background-color: #2a2a4a;
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.message-input-form input:focus {
+    border-color: #4a4a8a;
+}
+
+.message-input-form input::placeholder {
+    color: #606080;
+}
+
+.message-input-form button {
+    grid-column: 2;
+    border-radius: 24px;
+    border: none;
+    background-color: #4a4a8a;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+}
+
+.message-input-form button:hover {
+    background-color: #6a6aaa;
+}

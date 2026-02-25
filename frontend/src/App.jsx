@@ -24,7 +24,7 @@ const App = () => {
   
   return (
     <div>
-      <DummyMessenger />
+      <DummyMessenger currentUserId={1}/>
     </div>
   );
   
