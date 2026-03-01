@@ -1,9 +1,11 @@
-export default function ProtectedRoute({children}){
-    
-    const token = localStorage.getItem('token');
-    console.log('ProtectedRoute token: ', token);
+import { Navigate } from 'react-router-dom';
+import useAuthStore from '../store/authStore';
 
-    if(!token){
+export default function ProtectedRoute({children}){
+    const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+    const token = localStorage.getItem('token');
+
+    if(!isAuthenticated && !token){
         return <Navigate to='/auth/login'/>;
     }
 

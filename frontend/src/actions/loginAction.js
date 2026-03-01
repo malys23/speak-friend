@@ -1,5 +1,6 @@
 import { redirect } from 'react-router-dom';
 import { login } from '../services/authService';
+import useAuthStore from '../store/sceneStore';
 
 export async function loginAction({request}){
     
@@ -11,15 +12,12 @@ export async function loginAction({request}){
 
     try{
         const data = await login(authData.email, authData.password);
-        console.log('Step 1 - data received', data);
 
         localStorage.setItem('token', data.token);
-        console.log('Step 2 - token stored: ', data.token);
 
-        const redirectResult = redirect('/dungeon');
-        console.log('Step3 - redirect created:', redirectResult)
+        useAuthStore.getState().login(data.user, data.token);
 
-        return redirectResult;
+        return redirect('/dungeon');
 
 
     } catch(err){
