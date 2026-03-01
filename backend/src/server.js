@@ -4,10 +4,11 @@ import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
 import helmet from 'helmet';
-import { handlePrivateMessage } from './sockets/message.socket.js';
-import jwt from 'jsonwebtoken';
+
+import { handleFriendEvents } from './sockets/friend.socket.js';
 
 import authRoutes from './routes/auth.routes.js';
+import friendRoutes from './routes/friend.routes.js';
 
 //Database
 import './config/db.js';
@@ -27,21 +28,37 @@ app.use(helmet());
 app.use(cors({origin: process.env.CLIENT_URL}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use((req, res, next) => {
+    req.io = io;
+    next();
+});
 
 //Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/friends', friendRoutes);
 
-//Sockets.io events
+//Socket.io
+io.use((socket, next) => {
+    const token = socket.handshake.auth.token;
+    if(!token) return next(new Error('Unauthorized'));
+    try{
+        const decoded = verifyToken(token);
+        socket.user = decoded;
+        next();
+    } catch {
+        next(new Error('Invalid token'));
+    }
+});
 
-app.get('/api/test', (req, res)=>{
-    res.json({message: 'Hello from the backend!'});
+//Socket Events
+io.on('connection', (socket) =>{
+    handleFriendEvents(io, socket);
 });
 
 //Error Handler
 app.use((err, req, res, next) => {
-    const status = error.status || 500;
-    const message = error.message || 'Something went wrong.';
-    res.status(status).json({ message: message });
+    console.error(err.stack);
+    res.status(500).json({ message: 'Something went wrong' });
 });
 
 //Start Server
