@@ -1,6 +1,6 @@
 import { redirect } from 'react-router-dom';
 import { login } from '../services/authService';
-import useAuthStore from '../store/sceneStore';
+import useAuthStore from '../store/authStore';
 
 export async function loginAction({request}){
     

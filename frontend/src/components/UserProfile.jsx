@@ -5,7 +5,7 @@ export default function UserProfile(){
     if(!user) return <p>Loading...</p>
 
     return (
-        <div className = 'user-profile'>
+        <section className = 'user-profile'>
             <h1> Welcome in {user.username} </h1>
             <img
                 src={user.avatar_url}
@@ -13,7 +13,7 @@ export default function UserProfile(){
             />
             <h2>{user.username}</h2>
             <p>{user.email}</p>
-            <p>{user}</p>
-        </div>
+            <p>{user.dob}</p>
+        </section>
     );
 }
