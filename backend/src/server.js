@@ -4,6 +4,10 @@ import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
 import helmet from 'helmet';
+import { handlePrivateMessage } from './sockets/message.socket.js';
+import jwt from 'jsonwebtoken';
+
+import authRoutes from './routes/auth.routes.js';
 
 //Database
 import './config/db.js';
@@ -25,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 //Routes
+app.use('/api/auth', authRoutes);
 
 //Sockets.io events
 
@@ -34,8 +39,9 @@ app.get('/api/test', (req, res)=>{
 
 //Error Handler
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ message: 'Something went wrong' });
+    const status = error.status || 500;
+    const message = error.message || 'Something went wrong.';
+    res.status(status).json({ message: message });
 });
 
 //Start Server
