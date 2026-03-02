@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/', authMiddleware, getFriends);
 router.get('/pending', authMiddleware, getPendingRequests);
 router.post('/request', authMiddleware, sendFriendRequest);
-router.post('/accept/:friendId', authMiddleware, acceptFriendRequest);
-router.post('/decline/:friendId', authMiddleware, declineFriendRequest);
+router.patch('/accept/:friendId', authMiddleware, acceptFriendRequest);
+router.delete('/decline/:friendId', authMiddleware, declineFriendRequest);
 
 export default router;

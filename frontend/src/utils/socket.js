@@ -8,8 +8,21 @@ const socket = io(import.meta.env.VITE_API_URL, {
 });
 
 export const connectSocket = () => {
-    socket.auth = {token: localStorage.getItem('token')};
+    const token = localStorage.getItem('token');
+    console.log('Connecting socket with token:', token);
+    socket.auth = {token};
     socket.connect();
+
+    return new Promise((resolve) => {
+        if(socket.connected){
+            resolve();
+            return;
+        }
+        socket.on('connect', ()=> {
+            console.log('Socket connected: ', socket.id);
+            resolve();
+        });
+    });
 };
 
 export const disconnectSocket = () => {

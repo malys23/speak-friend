@@ -36,7 +36,7 @@ export const getPendingRequests = async(req, res) => {
 export const sendFriendRequest = async(req, res) => {
     try{
         const { email } = req.body;
-        const senderId = req.user.use_id;
+        const senderId = req.user.user_id;
 
         const receiver = await findUserByEmailForFriend(email, senderId);
         if(!receiver){

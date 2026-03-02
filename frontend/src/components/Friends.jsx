@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import socket from '../utils/socket.js';
 import { 
     getFriends, 
     getPendingRequests, 
@@ -39,20 +40,31 @@ export default function Friends(){
         };
         loadData();
 
-        subscribeFriendRequest((request) => {
-            setPendingRequests(prev => [...prev, request]);
-        });
+       const setupSubscriptions = () => {
+            subscribeFriendRequest((request) => {
+                console.log('Friend request received:', request);
+                setPendingRequests(prev => [...prev, request]);
+            });
 
-        subscribePendingRequests((requests) => {
-            setPendingRequests(requests);
-        });
+            subscribePendingRequests((requests) => {
+                setPendingRequests(requests);
+            });
 
-        requestPendingRequests();
+            requestPendingRequests();
+        };
+
+        if (socket.connected) {
+            setupSubscriptions();
+        } else {
+            socket.on('connect', setupSubscriptions);
+        }
 
         return () => {
             unsubscribeFriendRequest();
             unsubscribePendingRequests();
-        }
+            socket.off('connect', setupSubscriptions);
+        };
+
     }, []);
 
     const handleAccept = async (friendId) => {

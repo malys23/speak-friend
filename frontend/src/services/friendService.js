@@ -19,6 +19,7 @@ export const sendFriendRequest = async (email) => {
 
 export const acceptFriendRequest = async (friendId) => {
     const response = await api.patch(`/api/friends/accept/${friendId}`);
+    console.log('Accept friend request response:', response);
     return response.data;
 };
 
@@ -29,7 +30,15 @@ export const declineFriendRequest = async (friendId) => {
 
 //Friend socket services
 export const subscribeFriendRequest = (callback) => {
-    socket.on('friend_request', callback);
+    if (socket.connected){
+        socket.on('friend_request', callback);
+        return;
+    }
+
+    socket.on('connect', ()=> {
+        console.log('Socekt connected, subscribing to friend_request');
+        socket.on('friend_request', callback);
+    })
 };
 
 export const subscribeFriendRequestAccepted = (callback) => {
