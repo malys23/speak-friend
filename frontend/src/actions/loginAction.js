@@ -17,10 +17,10 @@ export async function loginAction({request}){
         localStorage.setItem('token', data.token);
         useAuthStore.getState().login(data.user, data.token);
 
-        connectSocket();
+        await connectSocket();
+        console.log('Socket ready, redirecting to dungeon');
 
         return redirect('/dungeon');
-
 
     } catch(err){
         const errorMessage = err.response?.data?.message || 'Invalid username or password';

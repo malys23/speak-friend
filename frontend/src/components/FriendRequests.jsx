@@ -1,4 +1,6 @@
 export default function FreindRequests({requests, onAccept, onDecline}){
+    console.log('FriendRequests received: ',requests);
+
     return (
         <div className='friend-requests'>
             <h2>Pending Requests</h2>

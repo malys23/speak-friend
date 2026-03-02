@@ -4,6 +4,7 @@ import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
 import helmet from 'helmet';
+import { verifyToken } from './utils/jwt.js';
 
 import { handleFriendEvents } from './sockets/friend.socket.js';
 
@@ -40,12 +41,14 @@ app.use('/api/friends', friendRoutes);
 //Socket.io
 io.use((socket, next) => {
     const token = socket.handshake.auth.token;
+
     if(!token) return next(new Error('Unauthorized'));
     try{
         const decoded = verifyToken(token);
         socket.user = decoded;
         next();
-    } catch {
+    } catch(err) {
+        console.log('Socket auth error:', err.message);
         next(new Error('Invalid token'));
     }
 });

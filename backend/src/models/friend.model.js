@@ -53,6 +53,7 @@ export const findUserByEmailForFriend = async (email, currentUserId) => {
         WHERE email = $1 AND user_id != $2`,
         [email, currentUserId]
     );
+    console.log('findUserByEmailForFriend result: ', result.row);
     return result.rows[0];
 }
 

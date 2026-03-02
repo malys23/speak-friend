@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import useAuthStore from '../store/authStore';
+import { useNavigate } from 'react-router-dom';
 import UserProfile from "../components/UserProfile";
 import Friends from '../components/Friends';
 
@@ -11,6 +13,13 @@ const PAGES = {
 
 export default function DummyBookUIPage(){
     const [activePage, setActivePage ] = useState('profile');
+    const logout = useAuthStore((state)=> state.logout);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/auth/login');
+    }
 
     return(
         <section className='book-ui'>
@@ -24,6 +33,11 @@ export default function DummyBookUIPage(){
             <div className='book-content'>
                 {PAGES[activePage]}
             </div>
+            <p>
+                <button onClick={handleLogout}>
+                    Logout
+                </button>
+            </p>
         </section>        
         //Call User profile (display user info, maybe edit)
         //Call friends page (display friends, add friends, message friend)
