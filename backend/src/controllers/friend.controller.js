@@ -4,9 +4,9 @@ import {
     findUserByEmailForFriend,
     findExistingFriend,
     createFriendRequest,
-    acceptFriendRequest,
+    approveFriendRequest,
     deleteFriendRequest
-} from '../models/friend.model';
+} from '../models/friend.model.js';
 
 export const getFriends = async(req, res) => {
     try{
@@ -20,7 +20,12 @@ export const getFriends = async(req, res) => {
 
 export const getPendingRequests = async(req, res) => {
     try{
+        console.log('getPendingRequests called');
+        console.log('user:', req.user);
+
         const requests = await findPendingRequests(req.user.user_id);
+        console.log('requests: ', requests);
+        
         res.status(200).json(requests);
     }catch(err){
         console.log(err);
@@ -70,7 +75,7 @@ export const sendFriendRequest = async(req, res) => {
 export const acceptFriendRequest = async(req, res) => {
     try{
         const { friendId } = req.params;
-        const friend = await acceptFriendRequest(friendId);
+        const friend = await approveFriendRequest(friendId);
 
         //NOTIFY SENDER VIA SOCKET.IO
         req.io.to(`user_${friend.user_id_1}`).emit('friend_request_accepted', {

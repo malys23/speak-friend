@@ -39,7 +39,7 @@ export const findPendingRequests = async (userId) => {
         FROM friends f
         JOIN users u ON f.user_id_1 = u.user_id
         WHERE f.user_id_2 = $1
-        AND f.status = 'pending`,
+        AND f.status = 'pending'`,
         [userId]
     );
     return result.rows;
@@ -78,7 +78,7 @@ export const createFriendRequest = async (senderId, receiverId) => {
 }
 
 //Accept friend request
-export const acceptFriendRequest = async (friendId) => {
+export const approveFriendRequest = async (friendId) => {
     const result = await  pool.query(
         `UPDATE friends SET status= 'accepted'
         WHERE friend_id = $1 RETURNING *`,

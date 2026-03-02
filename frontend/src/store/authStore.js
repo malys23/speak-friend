@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { disconnectSocket } from '../utils/socket';
 
 const decodeToken = (token) => {
     try{
@@ -39,6 +40,7 @@ const useAuthStore = create((set) => ({
 
     logout: () => {
         localStorage.removeItem('token');
+        disconnectSocket();
         set({
             user: null,
             token: null,
