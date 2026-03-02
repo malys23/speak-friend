@@ -1,4 +1,4 @@
-import { findPendingRequests } from '../models/friend.model';
+import { findPendingRequests } from '../models/friend.model.js';
 
 export const handleFriendEvents = (io, socket) => {
     const userId = socket.user.user_id;

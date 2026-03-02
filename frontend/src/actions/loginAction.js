@@ -1,6 +1,7 @@
 import { redirect } from 'react-router-dom';
 import { login } from '../services/authService';
 import useAuthStore from '../store/authStore';
+import { connectSocket } from '../utils/socket';
 
 export async function loginAction({request}){
     
@@ -14,8 +15,9 @@ export async function loginAction({request}){
         const data = await login(authData.email, authData.password);
 
         localStorage.setItem('token', data.token);
-
         useAuthStore.getState().login(data.user, data.token);
+
+        connectSocket();
 
         return redirect('/dungeon');
 

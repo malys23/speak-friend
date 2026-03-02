@@ -1,0 +1,31 @@
+import { io } from 'socket.io-client';
+
+const socket = io(import.meta.env.VITE_API_URL, {
+    autoConnect: false,
+    reconnection: true,
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000
+});
+
+export const connectSocket = () => {
+    socket.auth = {token: localStorage.getItem('token')};
+    socket.connect();
+};
+
+export const disconnectSocket = () => {
+    socket.disconnect();
+};
+
+socket.on('connect', ()=>{
+    console.log('Socket connected:', socket.id);
+});
+
+socket.on('disconnect', (reason)=>{
+    console.log('Socket disconnecte:', reason);
+});
+
+socket.on('connect_error', (err) => {
+    console.log('Socket connection error:', err.message);
+});
+
+export default socket;

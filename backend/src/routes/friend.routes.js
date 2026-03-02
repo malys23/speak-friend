@@ -5,15 +5,15 @@ import {
     sendFriendRequest,
     acceptFriendRequest,
     declineFriendRequest
-} from '../controllers/friend.controller';
-import authMiddleware from '../middleware/auth.middleware';
+} from '../controllers/friend.controller.js';
+import authMiddleware from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
 router.get('/', authMiddleware, getFriends);
-router.get('/', authMiddleware, getPendingRequests);
-router.post('/', authMiddleware, sendFriendRequest);
-router.post('/', authMiddleware, acceptFriendRequest);
-router.post('/', authMiddleware, declineFriendRequest);
+router.get('/pending', authMiddleware, getPendingRequests);
+router.post('/request', authMiddleware, sendFriendRequest);
+router.post('/accept/:friendId', authMiddleware, acceptFriendRequest);
+router.post('/decline/:friendId', authMiddleware, declineFriendRequest);
 
 export default router;
