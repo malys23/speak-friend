@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { sendFriendRequest } from '../services/friendService';
+import { sendFriendRequest } from '../../services/friendService';
 
 export default function AddFriends({onRequestSent}){
     const [email, setEmail] = useState('');

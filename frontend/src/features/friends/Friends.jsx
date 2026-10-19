@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import socket from '../utils/socket.js';
+import socket from "../../utils/socket";
 import { 
     getFriends, 
     getPendingRequests, 
@@ -10,7 +10,7 @@ import {
     unsubscribeFriendRequest,
     unsubscribePendingRequests,
     requestPendingRequests 
-} from '../services/friendService';
+} from '../../services/friendService';
 import FriendsList from './FriendsList';
 import FriendRequests from './FriendRequests';
 import AddFriends from './AddFriends';

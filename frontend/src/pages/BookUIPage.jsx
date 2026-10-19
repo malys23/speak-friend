@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useAuthStore from '../stores/authStore';
 import { useNavigate } from 'react-router';
 import UserProfile from "../features/profile/UserProfile";
-import Friends from '../components/Friends';
+import Friends from "../features/friends/Friends";
 
 const PAGES = {
     profile: <UserProfile />,
