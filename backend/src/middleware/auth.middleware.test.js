@@ -18,39 +18,47 @@ describe('authMiddleware', () => {
         vi.clearAllMocks();
     });
 
-    test('should return 401 if no token provided', () => {
+    test('should return 401 if no authorization header is provided', () => {
         authMiddleware(req, res, next);
 
         expect(res.status).toHaveBeenCalledWith(401);
+        expect(res.json).toHaveBeenCalledWith({ message: 'No token provided' });
         expect(next).not.toHaveBeenCalled();
     });
 
-    test('should call next if valid token provided', () => {
-        req.headers.authorization = 'InvalidFormat';
+    test.each([
+        ['no scheme', 'InvalidFormat'],
+        ['wrong sheme', 'Basic abc123'],
+        ['Bearer with no token', 'Bearer'],
+    ])('returns 401 for a malformed header (%s)'), (_label, header) => {
+        req.headers.authorization = header;
 
         authMiddleware(req, res, next);
 
         expect(res.status).toHaveBeenCalledWith(401);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Invalid token format' });
         expect(next).not.toHaveBeenCalled();
-    });
+    };
 
-    test('should call next if valid token provided', () => {
+    test('calls next and sets req.user for a valid token', () => {
         const token = generateToken({user_id:1, username: 'Gandalf'});
         req.headers.authorization = `Bearer ${token}`;
 
         authMiddleware(req, res, next);
 
-        expect(next).toHaveBeenCalled();
+        expect(next).toHaveBeenCalledWith();
         expect(req.user.user_id).toBe(1);
         expect(req.user.username).toBe('Gandalf');
+        expect(res.status).not.toHaveBeenCalled();
     });
 
-    test('should return 401 if token is invalid', ()=>{
+    test('returns 401 for garbage token', ()=>{
         req.headers.authorization = `Bearer invalidToken`;
 
         authMiddleware(req, res, next);
 
         expect(res.status).toHaveBeenCalledWith(401);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Invalid token' });
         expect(next).not.toHaveBeenCalled();
     });
 });
