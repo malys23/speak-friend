@@ -1,6 +1,6 @@
 import { redirect } from 'react-router';
 import { login } from '../services/authService';
-import useAuthStore from '../store/authStore';
+import useAuthStore from '../stores/authStore';
 import { connectSocket } from '../utils/socket';
 
 export async function loginAction({request}){

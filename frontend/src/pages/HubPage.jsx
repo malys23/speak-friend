@@ -1,9 +1,9 @@
-import DummyBookUIPage from "./BookUIPage";
+import BookUIPage from "./BookUIPage";
 
 export default function HubPage(){
     return(
         <>
-            <DummyBookUIPage/>
+            <BookUIPage/>
         </>
     );
 
