@@ -7,38 +7,41 @@ const socket = io(import.meta.env.VITE_API_URL, {
     reconnectionDelay: 1000
 });
 
-export const connectSocket = () => {
-    const token = localStorage.getItem('token');
-    console.log('Connecting socket with token:', token);
-    socket.auth = {token};
-    socket.connect();
-
-    return new Promise((resolve) => {
+export const connectSocket = () => 
+    new Promise((resolve, reject) => {
         if(socket.connected){
-            resolve();
+            resolve(socket);
             return;
         }
-        socket.on('connect', ()=> {
-            console.log('Socket connected: ', socket.id);
-            resolve();
-        });
-    });
-};
+
+        socket.auth = { token: localStorage.getItem('token') };
+
+        function cleanup() {
+            socket.off('connect', onConnect);
+            socket.off('conect_error', onError);
+        }
+        function onConnect(){
+            cleanup();
+            resolve(socket);
+        }
+        function onError(err){
+            cleanup();
+            reject(err);
+        }
+
+        socket.once('connect', onConnect);
+        socket.once('connect_error', onError);
+        socket.connect();
+    });    
 
 export const disconnectSocket = () => {
     socket.disconnect();
 };
 
-socket.on('connect', ()=>{
-    console.log('Socket connected:', socket.id);
-});
-
-socket.on('disconnect', (reason)=>{
-    console.log('Socket disconnecte:', reason);
-});
-
-socket.on('connect_error', (err) => {
-    console.log('Socket connection error:', err.message);
-});
+if(import.meta.env.DEV){
+    socket.on('connect', () => console.log('Socket connected:', socket.id));
+    socket.on('disconnect', (reason) => console.log('Socket disconnecte:', reason));
+    socket.on('connect_error', (err) => console.log('Socket connection error:', err.message))
+}
 
 export default socket;
