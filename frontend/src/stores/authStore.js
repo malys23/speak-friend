@@ -17,7 +17,7 @@ const getExistingAuth = () => {
     if (!token) return {user: null, token: null, isAuthenticated: false};
 
     const decoded = decodeToken(token);
-    if(!decoded || decoded.exp * 1000 < Date.now()){
+    if(!decoded?.exp || decoded.exp * 1000 < Date.now()){
         localStorage.removeItem('token');
         return {user: null, token: null, isAuthenticated: false};
     }
