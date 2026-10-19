@@ -11,7 +11,3 @@ export const register = async (username, email, dob, password) => {
         
     return response.data;
 }
-
-export const logout = async () => {
-    localStorage.removeItem('token');
-}

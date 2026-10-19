@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from 'react-router';
+import { createBrowserRouter, Outlet, redirect } from 'react-router';
 
 import LoginPage from './pages/LoginPage';
 import WelcomePage from './pages/WelcomePage';
@@ -7,6 +7,7 @@ import RegisterPage from './pages/RegisterPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { loginAction } from './actions/loginAction';
 import { registerAction } from './actions/registerAction';
+import { logoutAction } from './actions/logoutAction';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'logout',
+        action: logoutAction,
+        loader: () => redirect('/'),
       }
     ]
   },
