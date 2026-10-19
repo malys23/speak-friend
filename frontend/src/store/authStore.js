@@ -32,11 +32,10 @@ const getExistingAuth = () => {
 const useAuthStore = create((set) => ({
     ...getExistingAuth(),
 
-    login: (user, token) => set ({
-        user,
-        token,
-        isAuthenticated: true
-    }),
+    login: (user, token) =>{ 
+        localStorage.setItem('token', token);
+        set ({user, token, isAuthenticated: true});
+    },
 
     logout: () => {
         localStorage.removeItem('token');
