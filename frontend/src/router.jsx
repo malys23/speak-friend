@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage';
 import WelcomePage from './pages/WelcomePage';
 import HubPage from './pages/HubPage';
 import RegisterPage from './pages/RegisterPage';
-import ProtectedRoute from './features/ProtectedRoute';
+import ProtectedRoute from './features/auth/ProtectedRoute';
 import { loginAction } from './actions/loginAction';
 import { registerAction } from './actions/registerAction';
 import { logoutAction } from './actions/logoutAction';

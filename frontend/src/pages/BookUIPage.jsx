@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useAuthStore from '../stores/authStore';
 import { useNavigate } from 'react-router';
-import UserProfile from "../features/UserProfile";
+import UserProfile from "../features/profile/UserProfile";
 import Friends from '../components/Friends';
 
 const PAGES = {
