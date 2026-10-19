@@ -1,17 +1,14 @@
 import axios from 'axios';
+import useAuthStore from '../store/authStore';
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
-    headers: {
-        'Content-Type': 'application/json'
-    }
+    headers: { 'Content-Type': 'application/json' },
+    timout: 10000,
 });
 
-console.log('API baseURL', import.meta.env.VITE_API_URL);
-
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    console.log('Request config:', config.url, config.method);
+    const token = useAuthStore.getState().token;
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
@@ -20,12 +17,15 @@ api.interceptors.request.use((config) => {
 
 //temp debug
 api.interceptors.response.use(
-    (response) => {
-        console.log('Response received:', response.status, response.data);
-        return response;
-    },
+    (response) => response,
     (error) => {
-        console.log('Response error:', error.response?.status, error.response?.data);
+        const url = error.config?.url ?? '';
+        const isAuthRequest = url.includes('/auth/login') || url.includes('/auth/register');
+
+        if(error.response?.status === 401 && !isAuthRequest){
+            useAuthStore.getState().logout();
+            window.location.assign('/auth/login');
+        }
         return Promise.reject(error);
     }
 );
