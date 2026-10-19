@@ -11,6 +11,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui"
   },
+  "author": "Alyona (http://github.com/malys23",
+  "description": "React Three Fiber client for Speak Friend and Enter, a 3D chat app for DND campaigns",
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.0",
