@@ -1,7 +1,7 @@
 import { Form, Link,  } from 'react-router-dom';
 import { useActionData } from 'react-router';
 
-export default function DummyLoginPage(){
+export default function LoginPage(){
     const actionData = useActionData();
 
     return (

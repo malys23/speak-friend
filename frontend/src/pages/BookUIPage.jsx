@@ -11,7 +11,7 @@ const PAGES = {
     groups: <div>Groups coming soon</div>
 }
 
-export default function DummyBookUIPage(){
+export default function BookUIPage(){
     const [activePage, setActivePage ] = useState('profile');
     const logout = useAuthStore((state)=> state.logout);
     const navigate = useNavigate();

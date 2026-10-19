@@ -1,6 +1,6 @@
 import {Form} from 'react-router';
 
-export default function DummyNewUserPage(){
+export default function RegisterPage(){
     return (
         <>
             <Form method='post'>
