@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import { describe, test, expect } from 'vitest';
 import { generateToken, verifyToken } from '../utils/jwt.js';
 
