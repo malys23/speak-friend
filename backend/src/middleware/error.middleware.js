@@ -37,6 +37,6 @@ export const errorHandler = (err, req, res, next) => {
         return res.status(known.statusCode).json({ message: known.message });
     }
 
-    console.log(err);
+    console.error(err);
     res.status(500).json({ message: 'Something went wrong'});
 }
