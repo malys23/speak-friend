@@ -1,3 +1,4 @@
+import AppError from '../utils/AppError.js';
 import { generateToken} from '../utils/jwt.js';
 import { hashPassword, comparePassword } from '../utils/bcrypt.js';
 import { findUserByEmail, createUser, updateLastLogin } from '../models/user.model.js';

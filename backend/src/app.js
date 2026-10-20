@@ -19,9 +19,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(notFound);
-app.use(errorHandler);
-
 //Health Check
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
@@ -30,9 +27,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/friends', friendRoutes);
 
 //Error Handler
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ message: 'Something went wrong' });
-});
+app.use(notFound);
+app.use(errorHandler);
 
 export default app;
