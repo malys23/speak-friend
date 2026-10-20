@@ -1,4 +1,4 @@
-import AppError from "../utils/AppError";
+import AppError from "../utils/AppError.js";
 
 const UNIQUE_MESSAGES = {
     users_email_key: 'Email already in use',
@@ -9,7 +9,7 @@ function normalizeError(err){
     if (err instanceof AppError) return err;
 
     if (err.type === 'entity.parse.failed') return new AppError(400, 'Invalid JSON in request body');
-    if (err.type === 'entitty.too.large') return new AppError(413, 'Request body too large');
+    if (err.type === 'entity.too.large') return new AppError(413, 'Request body too large');
 
     switch (err.code){
         case '23505': //unique_violation

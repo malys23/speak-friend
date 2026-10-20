@@ -67,13 +67,13 @@ describe('errorHandler', () => {
         expect(next).toHaveBeenCalledWith(err);
         expect(res.status).not.toHaveBeenCalled();
     });
+});
 
-    describe('notFound', () => {
-        test('returns a JSON 404', () => {
-            const res = { status: vi.fn().mockReturnThis(), json: vi.fn() };
-            notFound({}, res);
-            expect(res.status).toHaveBeenCalledWith(404);
-            expect(res.json).toHaveBeenCalledWith({ message: 'Not found' });
-        });
+describe('notFound', () => {
+    test('returns a JSON 404', () => {
+        const res = { status: vi.fn().mockReturnThis(), json: vi.fn() };
+        notFound({}, res);
+        expect(res.status).toHaveBeenCalledWith(404);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Not found' });
     });
-})
+});
