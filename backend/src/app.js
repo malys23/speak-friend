@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 
+import { notFound, errorHandler } from './middleware/error.middleware.js';
 import authRoutes from './routes/auth.routes.js';
 import friendRoutes from './routes/friend.routes.js';
 
@@ -17,6 +18,9 @@ app.use((req, res, next) => {
     req.io = req.app.get('io');
     next();
 });
+
+app.use(notFound);
+app.use(errorHandler);
 
 //Health Check
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
