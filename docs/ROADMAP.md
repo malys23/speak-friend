@@ -23,8 +23,8 @@ Legend: `[x]` done, `[ ]` planned.
 **Backend**
 - [x] Layered structure (routes, controllers, models, middleware, sockets, utils)
 - [x] Unit tests for JWT, bcrypt, and auth middleware, run in CI
-- [ ] Split `app.js` from `server.js`
-- [ ] Central error-handling middleware
+- [x] Split `app.js` from `server.js`
+- [x] Central error-handling middleware
 - [x] ESLint and Prettier
 
 **Database**
