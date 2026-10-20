@@ -30,7 +30,7 @@ describe('authMiddleware', () => {
         ['no scheme', 'InvalidFormat'],
         ['wrong sheme', 'Basic abc123'],
         ['Bearer with no token', 'Bearer'],
-    ])('returns 401 for a malformed header (%s)'), (_label, header) => {
+    ])('returns 401 for a malformed header (%s)', (_label, header) => {
         req.headers.authorization = header;
 
         authMiddleware(req, res, next);
@@ -38,7 +38,7 @@ describe('authMiddleware', () => {
         expect(res.status).toHaveBeenCalledWith(401);
         expect(res.json).toHaveBeenCalledWith({ message: 'Invalid token format' });
         expect(next).not.toHaveBeenCalled();
-    };
+    });
 
     test('calls next and sets req.user for a valid token', () => {
         const token = generateToken({user_id:1, username: 'Gandalf'});
